@@ -1,6 +1,9 @@
+import { bodyChecker } from "../../libs/bodyChecker";
+
 export default function registerRoute(req, res) {
-  const { email, pwd, address, gender, plan } = req.body;
+  //const { email, pwd, address, gender, plan } = req.body;
   // validate body at backend
+  /*
   const regex = /^\S+@\S+\.\S+$/;
   if (typeof email !== "string" || regex.test(email) === false) {
     return res
@@ -18,6 +21,14 @@ export default function registerRoute(req, res) {
     return res.status(400).json({ ok: false, message: "Please select gender" });
   } else if (["full", "half", "mini"].includes(plan) === false) {
     return res.status(400).json({ ok: false, message: "Please select plan" });
+  }
+  */
+
+  const result = bodyChecker.safeParse(req.body);
+  if (result.success === false) {
+    return res
+      .status(400)
+      .json({ ok: false, message: result.error.issues[0].message });
   }
 
   //save data in database

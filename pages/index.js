@@ -26,56 +26,73 @@ export default function Lecture17() {
   }
 
   return (
-    <div>
-      <p>CMU Marathon 2022</p>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        submitForm();
+      }}
+    >
+      <div>
+        <p>CMU Marathon 2022</p>
 
-      <label>Email</label>
-      <br />
-      <input
-        placeholder="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <br />
-      <label>Password</label>
-      <br />
-      <input
-        placeholder="6 - 12 characters"
-        type="password"
-        onChange={(e) => setPwd(e.target.value)}
-        value={pwd}
-      ></input>
+        <label>Email</label>
+        <br />
+        <input
+          placeholder="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          type="email"
+          required
+        />
+        <br />
+        <label>Password</label>
+        <br />
+        <input
+          placeholder="6 - 12 characters"
+          type="password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
+          required
+          minLength={6}
+          maxLength={12}
+        ></input>
 
-      <br />
-      <label>Address</label>
-      <br />
-      <textarea
-        rows="5"
-        onChange={(e) => setAddress(e.target.value)}
-        value={address}
-      />
-      <br />
+        <br />
+        <label>Address</label>
+        <br />
+        <textarea
+          rows="5"
+          onChange={(e) => setAddress(e.target.value)}
+          value={address}
+          required
+        />
+        <br />
 
-      <label>Gender</label>
-      <br />
-      <select onChange={(e) => setGender(e.target.value)} value={gender}>
-        <option value="">-</option>
-        <option value="male">Male (เพศชาย)</option>
-        <option value="female">Female (เพศหญิง)</option>
-      </select>
+        <label>Gender</label>
+        <br />
+        <select
+          onChange={(e) => setGender(e.target.value)}
+          value={gender}
+          required
+        >
+          <option value="">-</option>
+          <option value="male">Male (เพศชาย)</option>
+          <option value="female">Female (เพศหญิง)</option>
+        </select>
 
-      <br />
-      <label>Plan</label>
-      <br />
-      <select onChange={(e) => setPlan(e.target.value)} value={plan}>
-        <option value="">-</option>
-        <option value="full">Full Marathon (42.195 KM)</option>
-        <option value="half">Half Marathon (21.1 KM)</option>
-        <option value="mini">Mini Marathon (10.5 KM)</option>
-      </select>
+        <br />
+        <label>Plan</label>
+        <br />
+        <select onChange={(e) => setPlan(e.target.value)} value={plan} required>
+          <option value="">-</option>
+          <option value="full">Full Marathon (42.195 KM)</option>
+          <option value="half">Half Marathon (21.1 KM)</option>
+          <option value="mini">Mini Marathon (10.5 KM)</option>
+        </select>
 
-      <br />
-      <button onClick={() => submitForm()}>Register</button>
-    </div>
+        <br />
+        <button type="submit">Register</button>
+      </div>
+    </form>
   );
 }
